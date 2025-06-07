@@ -6,6 +6,8 @@ from flask_sqlalchemy import SQLAlchemy
 from config import Config
 from datetime import datetime
 
+Config.create_database()
+
 app = Flask(__name__)
 app.config.from_object(Config)
 db = SQLAlchemy(app)
@@ -167,7 +169,7 @@ def update_product(id):
     return jsonify({'message': 'Product updated'})
 
 # Delete product
-@app.route('/products/<int:id>', methods=['DELETE'])
+@app.route('/api/products/<int:id>', methods=['DELETE'])
 def delete_product(id):
     product = Product.query.get_or_404(id)
     db.session.delete(product)
