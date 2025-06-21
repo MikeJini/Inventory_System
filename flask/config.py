@@ -12,7 +12,7 @@ password = os.getenv("DB_PASSWORD")
 host = os.getenv("DB_HOST")
 port = os.getenv("DB_PORT")
 
-print(f"postgresq://{user}:{password}@{host}:{port}/{dbname}")
+print(f"postgresql://{user}:{password}@{host}:{port}/{dbname}")
 
 class Config:
 

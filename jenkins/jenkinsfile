@@ -1,0 +1,55 @@
+pipeline {
+    agent any
+
+    environment {
+        CONTAINER_TEST_NAME = "inventory_backend_test"
+        APP_NAME = "inventory_backend"
+        VERSION = "${BUILD_NUMBER}"
+        IMAGE_NAME = "${APP_NAME}:${VERSION}"
+        DOCKERHUB_CRED = "docker-credentials"
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                echo "****** Building the app ******"
+                script {
+                    sh """
+                    cd flask
+                    docker build --tag ${env.APP_NAME}:${env.VERSION} .
+                    """
+                }    
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo "****** Testing the app ******"   
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo "******* Deploying a new version *******"
+                script {
+                    docker.withRegistry('', "${env.DOCKERHUB_CRED}") {
+                    sh """
+                    docker tag ${env.APP_NAME}:${env.VERSION} mikejini/${env.APP_NAME}:${env.VERSION}
+                    docker push mikejini/${env.APP_NAME}:${env.VERSION}
+                    """
+                    }
+                }    
+            }
+        }
+    }
+    post {
+        always {
+            echo "Cleaning up.."
+            sh """
+            docker stop ${CONTAINER_TEST_NAME} || true
+            docker rmi ${env.APP_NAME}:${env.VERSION}
+            """
+        }
+    }
+}
+
