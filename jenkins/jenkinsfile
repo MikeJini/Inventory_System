@@ -2,10 +2,16 @@ pipeline {
     agent any
 
     environment {
-        CONTAINER_TEST_NAME = "inventory_backend_test"
-        APP_NAME = "inventory_backend"
         VERSION = "${BUILD_NUMBER}"
-        IMAGE_NAME = "${APP_NAME}:${VERSION}"
+
+        BACKEND_CONTAINER_TEST_NAME = "inventory_backend_test"
+        BACKEND_APP_NAME = "inventory_backend"
+        BACKEND_IMAGE_NAME = "${BACKEND_APP_NAME}:${VERSION}"
+
+        FRONTEND_CONTAINER_TEST_NAME = "inventory_frontend_test"
+        FRONTEND_APP_NAME = "inventory_frontend"
+        FRONTEND_IMAGE_NAME = "${FRONTEND_APP_NAME}:${VERSION}"
+
         DOCKERHUB_CRED = "docker-credentials"
     }
 
@@ -16,7 +22,10 @@ pipeline {
                 script {
                     sh """
                     cd flask
-                    docker build --tag ${env.APP_NAME}:${env.VERSION} .
+                    docker build --tag ${env.BACKEND_IMAGE_NAME} .
+                    cd .. 
+                    cd frontend
+                    docker build --tag ${env.FRONTEND_IMAGE_NAME} . 
                     """
                 }    
             }
@@ -34,8 +43,11 @@ pipeline {
                 script {
                     docker.withRegistry('', "${env.DOCKERHUB_CRED}") {
                     sh """
-                    docker tag ${env.APP_NAME}:${env.VERSION} mikejini/${env.APP_NAME}:${env.VERSION}
-                    docker push mikejini/${env.APP_NAME}:${env.VERSION}
+                    docker tag ${env.BACKEND_IMAGE_NAME} mikejini/${env.BACKEND_IMAGE_NAME}
+                    docker push mikejini/${env.BACKEND_IMAGE_NAME}
+
+                    docker tag ${env.FRONTEND_IMAGE_NAME} mikejini/${env.FRONTEND_IMAGE_NAME}
+                    docker push mikejini/${env.FRONTEND_IMAGE_NAME}
                     """
                     }
                 }    
