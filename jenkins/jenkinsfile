@@ -58,8 +58,8 @@ pipeline {
         always {
             echo "Cleaning up.."
             sh """
-            docker stop ${CONTAINER_TEST_NAME} || true
-            docker rmi ${env.APP_NAME}:${env.VERSION}
+            docker stop ${env.BACKEND_CONTAINER_TEST_NAME} || true
+            docker rmi ${env.BACKEND_IMAGE_NAME}
             """
         }
     }
