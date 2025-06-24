@@ -59,7 +59,9 @@ pipeline {
             echo "Cleaning up.."
             sh """
             docker stop ${env.BACKEND_CONTAINER_TEST_NAME} || true
-            docker rmi ${env.BACKEND_IMAGE_NAME}
+            docker stop ${env.FRONTEND_CONTAINER_TEST_NAME} || true
+            docker rmi ${env.BACKEND_IMAGE_NAME} || true
+            docker rmi ${env.FRONTEND_IMAGE_NAME} || true
             """
         }
     }
