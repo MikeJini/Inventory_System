@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.backend.deployment.name }}
+  labels:
+    app: {{ .Values.backend.app }}
+spec:
+  replicas: {{ .Values.backend.deployment.replicas }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+        maxSurge: 1
+        maxUnavailable: 0
+  selector:
+    matchLabels:
+      app:  {{ .Values.backend.app }}
+  template:
+    # pod decliration
+    metadata:
+      labels:
+        app:  {{ .Values.backend.app }}
+    spec:
+      containers:
+      - name:  {{ .Values.backend.deployment.name }}
+        image: {{ .Values.backend.deployment.image_name }}:{{ .Values.backend.deployment.image_tag }}
+        ports:
+        - containerPort: {{ .Values.backend.deployment.container_port }}
+        envFrom:
+        - secretRef:
+            name: {{ .Values.backend.secret.name }} 
+        - configMapRef: 
+            name: {{ .Values.backend.config_map.name }} 

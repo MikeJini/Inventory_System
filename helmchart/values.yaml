@@ -1,0 +1,67 @@
+backend:
+
+  app: flask
+
+  deployment:
+    name: flask-deployment
+    image_name: mikejini/inventory_backend
+    image_tag: 16
+    container_port: 80
+    replicas: 1
+
+  service:
+    name: flask-service
+    type: NodePort
+    port: 80
+    targetPort: 80
+    nodePort: 31000
+
+  secret:
+    name: flask-secret
+    password: postgres
+
+  config_map:
+    name: flask-config
+    db_user: postgres
+
+frontend:
+
+  app: react
+
+  deployment:
+    name: react-deployment
+    image_name: mikejini/inventory_frontend
+    image_tag: 16
+    container_port: 80
+    replicas: 1
+
+  service:
+    name: react-service
+    type: NodePort
+    port: 80
+    targetPort: 80
+    nodePort: 32000
+  
+  config_map:
+    name: react-config
+  
+postgres:
+  app: postgres
+
+  statefulset:
+    name: postgres-deployment
+    image_name: postgres
+    image_tag: 17
+    container_port: 5432
+    replicas: 1
+
+  service:
+    name: postgres-service
+    type: NodePort
+    port: 5432
+    targetPort: 5432
+    nodePort: 30001   
+
+  secret:
+    name: postgres-secret
+    password: postgres

@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Values.postgres.statefulset.name }}
+  labels:
+    app: {{ .Values.postgres.app }}
+spec:
+  replicas: {{ .Values.postgres.statefulset.replicas }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+        maxSurge: 1
+        maxUnavailable: 0
+  selector:
+    matchLabels:
+      app:  {{ .Values.postgres.app }}
+  template:
+    # pod decliration
+    metadata:
+      labels:
+        app:  {{ .Values.postgres.app }}
+    spec:
+      containers:
+       - name:  {{ .Values.postgres.statefulset.name }}
+         image: {{ .Values.postgres.statefulset.image_name }}:{{ .Values.postgres.statefulset.image_tag }}
+         ports:
+          - containerPort: {{ .Values.postgres.statefulset.container_port }}
+         envFrom:
+          - secretRef:
+              name: {{ .Values.postgres.secret.name }} 
+    
