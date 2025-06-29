@@ -3,8 +3,8 @@ import axios from 'axios';
 import './App.css';
 
 function App() {
-  const flaskUrl = window.__ENV__.VITE_FLASK_URL;
-  const flaskPort = window.__ENV__.VITE_FLASK_PORT;
+  const flaskUrl = window.__ENV__.API_URL;
+  const flaskPort = window.__ENV__.API_PORT;
   const [products, setProducts] = useState([]);
   const [lowStock, setLowStock] = useState([]);
   const [restocks, setRestocks] = useState([]);

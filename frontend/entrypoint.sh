@@ -4,7 +4,7 @@
 cat <<EOF > /usr/share/nginx/html/env-config.js
 window.__ENV__ = {
   API_URL: "$VITE_FLASK_URL",
-  NODE_ENV: "$VITE_FLASK_PORT"
+  API_PORT: "$VITE_FLASK_PORT"
 };
 EOF
 
