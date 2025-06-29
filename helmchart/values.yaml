@@ -1,11 +1,12 @@
-backend:
+host: 192.168.1.217
 
+backend:
   app: flask
 
   deployment:
     name: flask-deployment
     image_name: mikejini/inventory_backend
-    image_tag: 16
+    image_tag: 19
     container_port: 80
     replicas: 1
 
@@ -31,7 +32,7 @@ frontend:
   deployment:
     name: react-deployment
     image_name: mikejini/inventory_frontend
-    image_tag: 16
+    image_tag: 19
     container_port: 80
     replicas: 1
 

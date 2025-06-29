@@ -4,5 +4,5 @@ metadata:
   name: {{ .Values.frontend.config_map.name }}
 data:
   # property-like keys; each key maps to a simple value
-  VITE_FLASK_URL: "{{ .Values.backend.service.name }}.default.svc.cluster.local"
-  VITE_FLASK_PORT: "{{ .Values.backend.service.port }}"
+  VITE_FLASK_URL: "{{ .Values.host }}"
+  VITE_FLASK_PORT: "{{ .Values.backend.service.nodePort }}"
