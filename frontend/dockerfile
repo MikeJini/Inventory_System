@@ -15,8 +15,14 @@ FROM nginx:stable-alpine
 # Copy built files from the previous stage
 COPY --from=build /app/dist /usr/share/nginx/html
 
+COPY entrypoint.sh .
+
+RUN chmod +x /entrypoint.sh
+
 # Copy custom Nginx configuration (optional)
 
 EXPOSE 80
+
+ENTRYPOINT ["/entrypoint.sh"]
 
 CMD ["nginx", "-g", "daemon off;"]
