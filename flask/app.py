@@ -3,12 +3,14 @@ from sqlalchemy import event
 from datetime import datetime
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
+ from flask_cors import CORS
 from config import Config
 from datetime import datetime
 
 Config.create_database()
 
 app = Flask(__name__)
+CORS(app)
 app.config.from_object(Config)
 db = SQLAlchemy(app)
 

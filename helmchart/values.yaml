@@ -1,12 +1,14 @@
 host: 192.168.1.217
 
 backend:
+
   app: flask
+  host_port:
 
   deployment:
     name: flask-deployment
     image_name: mikejini/inventory_backend
-    image_tag: 19
+    image_tag: 
     container_port: 80
     replicas: 1
 
@@ -19,7 +21,7 @@ backend:
 
   secret:
     name: flask-secret
-    password: postgres
+    password: 
 
   config_map:
     name: flask-config
@@ -28,11 +30,12 @@ backend:
 frontend:
 
   app: react
+  host_port:
 
   deployment:
     name: react-deployment
     image_name: mikejini/inventory_frontend
-    image_tag: 19
+    image_tag: 
     container_port: 80
     replicas: 1
 
@@ -65,4 +68,4 @@ postgres:
 
   secret:
     name: postgres-secret
-    password: postgres
+    password: 
