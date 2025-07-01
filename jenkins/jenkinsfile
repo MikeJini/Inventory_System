@@ -63,6 +63,9 @@ pipeline {
                 script {
                     withCredentials([string(credentialsId: 'postgres_password', variable: 'PG_PASSWORD')]) {
                         sh """#!/bin/bash
+
+                        export KUBECONFIG=/home/devops/.kube/config
+
                         helm upgrade --install ${env.CHART_NAME} ./helmchart \
                         --set backend.deployment.image_tag=${env.VERSION} \
                         --set frontend.deployment.image_tag=${env.VERSION} \
