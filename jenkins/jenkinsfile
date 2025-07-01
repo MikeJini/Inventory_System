@@ -13,7 +13,7 @@ pipeline {
         FRONTEND_IMAGE_NAME = "${FRONTEND_APP_NAME}:${VERSION}"
 
         DOCKERHUB_CRED = "docker-credentials"
-        CHART_NAME = "inventory_chart"
+        CHART_NAME = "inventory-chart"
         FRONTEND_PORT = 8000
         BACKEND_PORT = 8001
     }
