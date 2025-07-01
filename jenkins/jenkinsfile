@@ -63,12 +63,12 @@ pipeline {
                 script {
                     withCredentials([string(credentialsId: 'postgres_password', variable: 'PG_PASSWORD')]) {
                         sh """
-                        helm upgrade --install ${env.CHART_NAME} ./helmchart --set backend.deployment.image_tag = ${env.VERSION}
-                        --set frontend.deployment.image_tag = ${env.VERSION}
-                        --set backend.secret.password = ${PG_PASSWORD}
-                        --set frontend.secret.password = ${PG_PASSWORD}
-                        -set backend.host_port = ${env.BACKEND_PORT}
-                        --set frontend.host_port = ${env.FRONTEND_PORT}
+                        helm upgrade --install ${env.CHART_NAME} ./helmchart --set backend.deployment.image_tag=${env.VERSION} \
+                        --set frontend.deployment.image_tag=${env.VERSION} \ 
+                        --set backend.secret.password=${PG_PASSWORD} \
+                        --set frontend.secret.password=${PG_PASSWORD} \
+                        -set backend.host_port=${env.BACKEND_PORT} \ 
+                        --set frontend.host_port=${env.FRONTEND_PORT} \
                         """
                     }
                 }       
