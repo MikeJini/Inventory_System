@@ -56,7 +56,6 @@ pipeline {
                 }    
             }
         }
-    }
 
         stage('Deploy Kubernetes') {
             steps {
@@ -76,6 +75,7 @@ pipeline {
             }
         }
     
+    }
 
     post {
         always {
