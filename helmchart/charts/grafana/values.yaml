@@ -670,6 +670,7 @@ datasources:
       url: http://inventory-chart-prometheus-server.default.svc.cluster.local
       access: proxy
       isDefault: true
+      uid: prometheusdatasource
 #    - name: CloudWatch
 #      type: cloudwatch
 #      access: proxy

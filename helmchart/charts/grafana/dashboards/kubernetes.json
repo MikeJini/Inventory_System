@@ -36,7 +36,7 @@
       "type": "row"
     },
     {
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": "prometheusdatasource",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -121,7 +121,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "cer0bwjp5ws8wf"
+            "uid": "prometheusdatasource"
           },
           "expr": "sum (rate (container_network_receive_bytes_total{kubernetes_io_hostname=~\"^$Node$\"}[1m]))",
           "interval": "10s",
@@ -134,7 +134,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "cer0bwjp5ws8wf"
+            "uid": "prometheusdatasource"
           },
           "expr": "- sum (rate (container_network_transmit_bytes_total{kubernetes_io_hostname=~\"^$Node$\"}[1m]))",
           "interval": "10s",
@@ -164,7 +164,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "cer0bwjp5ws8wf"
+        "uid": "prometheusdatasource"
       },
       "fieldConfig": {
         "defaults": {
@@ -231,7 +231,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "cer0bwjp5ws8wf"
+            "uid": "prometheusdatasource"
           },
           "expr": "sum (container_memory_working_set_bytes{id=\"/\",kubernetes_io_hostname=~\"^$Node$\"}) / sum (machine_memory_bytes{kubernetes_io_hostname=~\"^$Node$\"}) * 100",
           "interval": "10s",
@@ -246,7 +246,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "cer0bwjp5ws8wf"
+        "uid": "prometheusdatasource"
       },
       "fieldConfig": {
         "defaults": {
@@ -314,7 +314,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "cer0bwjp5ws8wf"
+            "uid": "prometheusdatasource"
           },
           "expr": "sum (rate (container_cpu_usage_seconds_total{id=\"/\",kubernetes_io_hostname=~\"^$Node$\"}[1m])) / sum (machine_cpu_cores{kubernetes_io_hostname=~\"^$Node$\"}) * 100",
           "interval": "10s",
@@ -329,7 +329,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "cer0bwjp5ws8wf"
+        "uid": "prometheusdatasource"
       },
       "fieldConfig": {
         "defaults": {
@@ -397,7 +397,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "cer0bwjp5ws8wf"
+            "uid": "prometheusdatasource"
           },
           "editorMode": "code",
           "expr": "sum (container_fs_usage_bytes{kubernetes_io_hostname=~\"minikube\"}) / sum (container_fs_limit_bytes{kubernetes_io_hostname=~\"minikube\"}) * 100",
@@ -416,7 +416,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "cer0bwjp5ws8wf"
+        "uid": "prometheusdatasource"
       },
       "fieldConfig": {
         "defaults": {
@@ -478,7 +478,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "cer0bwjp5ws8wf"
+            "uid": "prometheusdatasource"
           },
           "expr": "sum (container_memory_working_set_bytes{id=\"/\",kubernetes_io_hostname=~\"^$Node$\"})",
           "interval": "10s",
@@ -493,7 +493,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "cer0bwjp5ws8wf"
+        "uid": "prometheusdatasource"
       },
       "fieldConfig": {
         "defaults": {
@@ -555,7 +555,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "cer0bwjp5ws8wf"
+            "uid": "prometheusdatasource"
           },
           "expr": "sum (machine_memory_bytes{kubernetes_io_hostname=~\"^$Node$\"})",
           "interval": "10s",
@@ -570,7 +570,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "cer0bwjp5ws8wf"
+        "uid": "prometheusdatasource"
       },
       "fieldConfig": {
         "defaults": {
@@ -632,7 +632,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "cer0bwjp5ws8wf"
+            "uid": "prometheusdatasource"
           },
           "expr": "sum (rate (container_cpu_usage_seconds_total{id=\"/\",kubernetes_io_hostname=~\"^$Node$\"}[1m]))",
           "interval": "10s",
@@ -647,7 +647,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "cer0bwjp5ws8wf"
+        "uid": "prometheusdatasource"
       },
       "fieldConfig": {
         "defaults": {
@@ -709,7 +709,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "cer0bwjp5ws8wf"
+            "uid": "prometheusdatasource"
           },
           "expr": "sum (machine_cpu_cores{kubernetes_io_hostname=~\"^$Node$\"})",
           "interval": "10s",
@@ -724,7 +724,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "cer0bwjp5ws8wf"
+        "uid": "prometheusdatasource"
       },
       "fieldConfig": {
         "defaults": {
@@ -786,7 +786,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "cer0bwjp5ws8wf"
+            "uid": "prometheusdatasource"
           },
           "editorMode": "code",
           "expr": "sum (container_fs_usage_bytes{kubernetes_io_hostname=\"minikube\"})",
@@ -803,7 +803,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "cer0bwjp5ws8wf"
+        "uid": "prometheusdatasource"
       },
       "fieldConfig": {
         "defaults": {
@@ -865,7 +865,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "cer0bwjp5ws8wf"
+            "uid": "prometheusdatasource"
           },
           "editorMode": "code",
           "expr": "sum (container_fs_limit_bytes{kubernetes_io_hostname=\"minikube\"})",
@@ -895,7 +895,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "cer0bwjp5ws8wf"
+        "uid": "prometheusdatasource"
       },
       "fieldConfig": {
         "defaults": {
@@ -980,7 +980,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "cer0bwjp5ws8wf"
+            "uid": "prometheusdatasource"
           },
           "editorMode": "code",
           "expr": "sum (rate (container_cpu_usage_seconds_total{kubernetes_io_hostname=\"minikube\"}[1m])) by (pod_name)",
@@ -1012,7 +1012,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "cer0bwjp5ws8wf"
+        "uid": "prometheusdatasource"
       },
       "fieldConfig": {
         "defaults": {
@@ -1097,7 +1097,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "cer0bwjp5ws8wf"
+            "uid": "prometheusdatasource"
           },
           "expr": "sum (rate (container_cpu_usage_seconds_total{systemd_service_name!=\"\",kubernetes_io_hostname=~\"^$Node$\"}[1m])) by (systemd_service_name)",
           "hide": false,
@@ -1128,7 +1128,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "cer0bwjp5ws8wf"
+        "uid": "prometheusdatasource"
       },
       "fieldConfig": {
         "defaults": {
@@ -1213,7 +1213,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "cer0bwjp5ws8wf"
+            "uid": "prometheusdatasource"
           },
           "editorMode": "code",
           "expr": "sum (rate (container_cpu_usage_seconds_total[1m])) by (container_name, pod_name)",
@@ -1229,7 +1229,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "cer0bwjp5ws8wf"
+            "uid": "prometheusdatasource"
           },
           "expr": "sum (rate (container_cpu_usage_seconds_total{image!=\"\",name!~\"^k8s_.*\",kubernetes_io_hostname=~\"^$Node$\"}[1m])) by (kubernetes_io_hostname, name, image)",
           "hide": false,
@@ -1243,7 +1243,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "cer0bwjp5ws8wf"
+            "uid": "prometheusdatasource"
           },
           "expr": "sum (rate (container_cpu_usage_seconds_total{rkt_container_name!=\"\",kubernetes_io_hostname=~\"^$Node$\"}[1m])) by (kubernetes_io_hostname, rkt_container_name)",
           "interval": "10s",
@@ -1273,7 +1273,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "cer0bwjp5ws8wf"
+        "uid": "prometheusdatasource"
       },
       "fieldConfig": {
         "defaults": {
@@ -1358,7 +1358,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "cer0bwjp5ws8wf"
+            "uid": "prometheusdatasource"
           },
           "expr": "sum (rate (container_cpu_usage_seconds_total{id!=\"/\",kubernetes_io_hostname=~\"^$Node$\"}[1m])) by (id)",
           "hide": false,
@@ -1389,7 +1389,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "cer0bwjp5ws8wf"
+        "uid": "prometheusdatasource"
       },
       "fieldConfig": {
         "defaults": {
@@ -1475,7 +1475,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "cer0bwjp5ws8wf"
+            "uid": "prometheusdatasource"
           },
           "editorMode": "code",
           "expr": "sum (container_memory_working_set_bytes{kubernetes_io_hostname=~\"minikube\"}) by (pod_name)",
@@ -1507,7 +1507,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "cer0bwjp5ws8wf"
+        "uid": "prometheusdatasource"
       },
       "fieldConfig": {
         "defaults": {
@@ -1593,7 +1593,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "cer0bwjp5ws8wf"
+            "uid": "prometheusdatasource"
           },
           "expr": "sum (container_memory_working_set_bytes{systemd_service_name!=\"\",kubernetes_io_hostname=~\"^$Node$\"}) by (systemd_service_name)",
           "interval": "10s",
@@ -1623,7 +1623,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "cer0bwjp5ws8wf"
+        "uid": "prometheusdatasource"
       },
       "fieldConfig": {
         "defaults": {
@@ -1709,7 +1709,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "cer0bwjp5ws8wf"
+            "uid": "prometheusdatasource"
           },
           "editorMode": "code",
           "expr": "sum (container_memory_working_set_bytes{kubernetes_io_hostname=\"minikube\"}) by (container_name, pod_name)",
@@ -1724,7 +1724,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "cer0bwjp5ws8wf"
+            "uid": "prometheusdatasource"
           },
           "editorMode": "code",
           "expr": "sum (container_memory_working_set_bytes{image!=\"\",name!~\"^k8s_.*\",kubernetes_io_hostname=~\"^$Node$\"}) by (kubernetes_io_hostname, name, image)",
@@ -1739,7 +1739,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "cer0bwjp5ws8wf"
+            "uid": "prometheusdatasource"
           },
           "expr": "sum (container_memory_working_set_bytes{rkt_container_name!=\"\",kubernetes_io_hostname=~\"^$Node$\"}) by (kubernetes_io_hostname, rkt_container_name)",
           "interval": "10s",
@@ -1769,7 +1769,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "cer0bwjp5ws8wf"
+        "uid": "prometheusdatasource"
       },
       "fieldConfig": {
         "defaults": {
@@ -1855,7 +1855,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "cer0bwjp5ws8wf"
+            "uid": "prometheusdatasource"
           },
           "expr": "sum (container_memory_working_set_bytes{id!=\"/\",kubernetes_io_hostname=~\"^$Node$\"}) by (id)",
           "interval": "10s",
@@ -1885,7 +1885,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "cer0bwjp5ws8wf"
+        "uid": "prometheusdatasource"
       },
       "fieldConfig": {
         "defaults": {
@@ -1971,7 +1971,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "cer0bwjp5ws8wf"
+            "uid": "prometheusdatasource"
           },
           "editorMode": "code",
           "expr": "sum (rate (container_network_receive_bytes_total{kubernetes_io_hostname=\"minikube\"}[1m])) by (pod_name)",
@@ -1986,7 +1986,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "cer0bwjp5ws8wf"
+            "uid": "prometheusdatasource"
           },
           "expr": "- sum (rate (container_network_transmit_bytes_total{image!=\"\",name=~\"^k8s_.*\",kubernetes_io_hostname=~\"^$Node$\"}[1m])) by (pod_name)",
           "interval": "10s",
@@ -2016,7 +2016,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "cer0bwjp5ws8wf"
+        "uid": "prometheusdatasource"
       },
       "fieldConfig": {
         "defaults": {
@@ -2102,7 +2102,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "cer0bwjp5ws8wf"
+            "uid": "prometheusdatasource"
           },
           "editorMode": "code",
           "expr": "sum (rate (container_network_receive_bytes_total{kubernetes_io_hostname=\"minikube\"}[1m])) by (container_name, pod_name)",
@@ -2118,7 +2118,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "cer0bwjp5ws8wf"
+            "uid": "prometheusdatasource"
           },
           "expr": "- sum (rate (container_network_transmit_bytes_total{image!=\"\",name=~\"^k8s_.*\",kubernetes_io_hostname=~\"^$Node$\"}[1m])) by (container_name, pod_name)",
           "hide": false,
@@ -2132,7 +2132,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "cer0bwjp5ws8wf"
+            "uid": "prometheusdatasource"
           },
           "expr": "sum (rate (container_network_receive_bytes_total{image!=\"\",name!~\"^k8s_.*\",kubernetes_io_hostname=~\"^$Node$\"}[1m])) by (kubernetes_io_hostname, name, image)",
           "hide": false,
@@ -2146,7 +2146,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "cer0bwjp5ws8wf"
+            "uid": "prometheusdatasource"
           },
           "expr": "- sum (rate (container_network_transmit_bytes_total{image!=\"\",name!~\"^k8s_.*\",kubernetes_io_hostname=~\"^$Node$\"}[1m])) by (kubernetes_io_hostname, name, image)",
           "hide": false,
@@ -2160,7 +2160,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "cer0bwjp5ws8wf"
+            "uid": "prometheusdatasource"
           },
           "expr": "sum (rate (container_network_transmit_bytes_total{rkt_container_name!=\"\",kubernetes_io_hostname=~\"^$Node$\"}[1m])) by (kubernetes_io_hostname, rkt_container_name)",
           "hide": false,
@@ -2174,7 +2174,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "cer0bwjp5ws8wf"
+            "uid": "prometheusdatasource"
           },
           "expr": "- sum (rate (container_network_transmit_bytes_total{rkt_container_name!=\"\",kubernetes_io_hostname=~\"^$Node$\"}[1m])) by (kubernetes_io_hostname, rkt_container_name)",
           "hide": false,
@@ -2205,7 +2205,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "cer0bwjp5ws8wf"
+        "uid": "prometheusdatasource"
       },
       "fieldConfig": {
         "defaults": {
@@ -2291,7 +2291,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "cer0bwjp5ws8wf"
+            "uid": "prometheusdatasource"
           },
           "editorMode": "code",
           "expr": "sum (rate (container_network_receive_bytes_total{kubernetes_io_hostname=\"minikube\"}[1m])) by (id)",
@@ -2306,7 +2306,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "cer0bwjp5ws8wf"
+            "uid": "prometheusdatasource"
           },
           "expr": "- sum (rate (container_network_transmit_bytes_total{id!=\"/\",kubernetes_io_hostname=~\"^$Node$\"}[1m])) by (id)",
           "interval": "10s",
@@ -2335,7 +2335,7 @@
           "text": "All",
           "value": "$__all"
         },
-        "datasource": "cer0bwjp5ws8wf",
+        "datasource": "prometheusdatasource",
         "definition": "label_values()",
         "includeAll": true,
         "name": "Node",
