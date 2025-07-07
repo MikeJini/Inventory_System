@@ -36,7 +36,14 @@ pipeline {
 
         stage('Test') {
             steps {
-                echo "****** Testing the app ******"   
+                echo "****** Testing the app ******"
+                script {
+                    sh """
+                    cd tests
+                    docker compose up -d
+                    python insert_vals.py   
+                    docker compose down -v
+                """
             }
         }
 
