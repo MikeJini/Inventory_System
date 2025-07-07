@@ -41,7 +41,7 @@ pipeline {
                     sh """
                     cd tests
                     docker compose up -d
-                    sleep 10
+                    sleep 30
                     python insert_vals.py   
                     docker compose down -v
                 """
