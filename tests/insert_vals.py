@@ -31,7 +31,7 @@ VALS = [
     }
 ]
 
-get_url = r"http://192.168.1.217:5000/api/products"
+get_url = r"http://127.0.0.1:5000/api/products"
 
 for item in VALS:
     response = requests.post(get_url, json=item)
