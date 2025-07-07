@@ -31,25 +31,46 @@ VALS = [
     }
 ]
 
+get_url = r"http://192.168.1.217:5000/api/products"
+
 for item in VALS:
-    requests.post('http://192.168.1.217:5000/api/products', json=item)
+    response = requests.post(get_url, json=item)
+
+    print(type(response.status_code))
+
+    if response.status_code <= 200 and response.status_code >= 204:
+        raise Exception(f"GET request failed with status code: {response.status_code}")
 
 # --- GET Request Products ---
-
-# Define the URL for the GET request
-get_url = "http://192.168.1.217:5000/api/products"
 
 print(f"Making a GET request to: {get_url}")
 # Make the GET request
 get_response = requests.get(get_url)
 
 # Check if the request was successful (status code 200)
-if get_response.status_code == 200:
+if get_response.status_code >= 200 and get_response.status_code <= 204:
     print("GET request successful!")
     # Print the JSON response content
     print("Response JSON:")
     print(json.dumps(get_response.json(), indent=2))
 else:
-    print(f"GET request failed with status code: {get_response.status_code}")
+    raise Exception(f"GET request failed with status code: {get_response.status_code}")
+
+print("\n" + "="*30 + "\n")    
+
+# --- Delete Request Products ---
+
+print(f"Making a GET request to: {get_url}/1")
+# Make the Delete request
+get_response = requests.delete(f"{get_url}/1")
+
+# Check if the request was successful (status code 200)
+if get_response.status_code >= 200 and get_response.status_code <= 204:
+    print("GET request successful!")
+    # Print the JSON response content
+    print("Response JSON:")
+    print(json.dumps(get_response.json(), indent=2))
+else:
+    raise Exception(f"DELETE request failed with status code: {get_response.status_code}")
 
 print("\n" + "="*30 + "\n")    

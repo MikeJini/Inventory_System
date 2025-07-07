@@ -1,6 +1,7 @@
 # config.py
 import os
 import psycopg2
+import time
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 from dotenv import load_dotenv
 
@@ -13,6 +14,9 @@ host = os.getenv("DB_HOST")
 port = os.getenv("DB_PORT")
 
 print(f"postgresql://{user}:{password}@{host}:{port}/{dbname}")
+
+time.sleep(10)
+print("Program resumed after 10 seconds.")
 
 class Config:
 
