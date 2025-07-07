@@ -70,6 +70,16 @@ def log_stock_update(mapper, connection, target):
     )
 
 def configure_stock(product_id, quantity):
+    """
+    Updates the stock level of a product.
+
+    Args:
+        product_id: The product to update.
+        quantity: The amount to update.
+
+    Returns:
+        None.
+    """
 
     # Get the stock row of the required product
     stock = StockLevel.query.filter_by(product_id=product_id).first()
@@ -246,7 +256,7 @@ if __name__ == '__main__':
     with app.app_context():
         db.create_all()
 
-    app.run(debug=True, port=80)
+    app.run(debug=True, port=80, host="0.0.0.0")
 
 # Problems:
 # Queries updating stock_level

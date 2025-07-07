@@ -1,4 +1,5 @@
 import requests
+import json
 
 VALS = [
     {
@@ -31,4 +32,24 @@ VALS = [
 ]
 
 for item in VALS:
-    requests.post('http://127.0.0.1:5000/api/products', json=item)
+    requests.post('http://192.168.1.217:5000/api/products', json=item)
+
+# --- GET Request Products ---
+
+# Define the URL for the GET request
+get_url = "http://192.168.1.217:5000/api/products"
+
+print(f"Making a GET request to: {get_url}")
+# Make the GET request
+get_response = requests.get(get_url)
+
+# Check if the request was successful (status code 200)
+if get_response.status_code == 200:
+    print("GET request successful!")
+    # Print the JSON response content
+    print("Response JSON:")
+    print(json.dumps(get_response.json(), indent=2))
+else:
+    print(f"GET request failed with status code: {get_response.status_code}")
+
+print("\n" + "="*30 + "\n")    
