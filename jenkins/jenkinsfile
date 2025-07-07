@@ -41,13 +41,14 @@ pipeline {
                     sh """
                     cd tests
                     docker compose up -d
+                    sleep 10
                     python insert_vals.py   
                     docker compose down -v
                 """
                 }
             }
         }
-        
+
         stage('Deploy') {
             steps {
                 echo "******* Deploying a new version *******"
