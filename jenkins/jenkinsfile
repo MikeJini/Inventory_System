@@ -104,10 +104,10 @@ pipeline {
                     export KUBECONFIG=/home/devops/.kube/config
                     
 
-                    jobs -p | xargs ps -o pid,cmd | grep kubectl | awk '{print \$1}' | xargs kill
-                    kubectl port-forward --address=0.0.0.0 svc/react-service ${env.FRONTEND_PORT}:80 &
-                    kubectl port-forward --address=0.0.0.0 svc/flask-service ${env.BACKEND_PORT}:80 &
-                    kubectl port-forward --address 0.0.0.0 svc/inventory-chart-grafana 8010:80 &
+                    jobs -p | xargs ps -o pid,cmd | grep kubectl | awk '{print \$1}' | xargs -r kill
+                    kubectl port-forward --address=0.0.0.0 svc/react-service ${env.FRONTEND_PORT}:80 > /tmp/react.log 2>&1 & 
+                    kubectl port-forward --address=0.0.0.0 svc/flask-service ${env.BACKEND_PORT}:80 > /tmp/flask.log 2>&1 & 
+                    kubectl port-forward --address 0.0.0.0 svc/inventory-chart-grafana 8010:80  /tmp/grafana.log 2>&1 &
                     """
                     
                 }       
