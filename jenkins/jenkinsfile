@@ -77,13 +77,12 @@ pipeline {
                         sh """#!/bin/bash
 
                         export KUBECONFIG=/home/devops/.kube/config
-                        echo $PG_PASSWORD
 
                         helm upgrade --install ${env.CHART_NAME} ./helmchart \
                         --set backend.deployment.image_tag=${env.VERSION} \
                         --set frontend.deployment.image_tag=${env.VERSION} \
-                        --set backend.secret.password=$PG_PASSWORD \
-                        --set postgres.secret.password=$PG_PASSWORD \
+                        --set backend.secret.password=${PG_PASSWORD} \
+                        --set postgres.secret.password=${PG_PASSWORD} \
                         --set backend.host_port=${env.BACKEND_PORT} \
                         --set frontend.host_port=${env.FRONTEND_PORT}
                         """
