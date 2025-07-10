@@ -74,18 +74,18 @@ pipeline {
                 // and deletes them to prevent port overrides 
                 script {
                     withCredentials([string(credentialsId: 'postgres_password', variable: 'PG_PASSWORD')]) {
-                        sh '''#!/bin/bash
+                        sh """#!/bin/bash
 
                         export KUBECONFIG=/home/devops/.kube/config
 
-                        helm upgrade --install \${env.CHART_NAME} ./helmchart \
-                        --set backend.deployment.image_tag=\${env.VERSION} \
-                        --set frontend.deployment.image_tag=\${env.VERSION} \
+                        helm upgrade --install ${env.CHART_NAME} ./helmchart \
+                        --set backend.deployment.image_tag=${env.VERSION} \
+                        --set frontend.deployment.image_tag=${env.VERSION} \
                         --set backend.secret.password=\${PG_PASSWORD} \
                         --set postgres.secret.password=\${PG_PASSWORD} \
-                        --set backend.host_port=\${env.BACKEND_PORT} \
-                        --set frontend.host_port=\${env.FRONTEND_PORT}
-                        '''
+                        --set backend.host_port=${env.BACKEND_PORT} \
+                        --set frontend.host_port=${env.FRONTEND_PORT}
+                        """
                     }
                 }       
             }
@@ -105,8 +105,8 @@ pipeline {
                     
 
                     jobs -p | xargs ps -o pid,cmd | grep kubectl | awk '{print $1}' | xargs kill
-                    kubectl port-forward --address=0.0.0.0 svc/react-service ${env.FRONTEND_PORT}:80 &
-                    kubectl port-forward --address=0.0.0.0 svc/flask-service ${env.BACKEND_PORT}:80 &
+                    kubectl port-forward --address=0.0.0.0 svc/react-service "${env.FRONTEND_PORT}":80 &
+                    kubectl port-forward --address=0.0.0.0 svc/flask-service "${env.BACKEND_PORT}":80 &
                     kubectl port-forward --address 0.0.0.0 svc/inventory-chart-grafana 8010:80
                     """
                     
