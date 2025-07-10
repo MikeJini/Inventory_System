@@ -14,7 +14,7 @@ backend:
 
   service:
     name: flask-service
-    type: LoadBalancer
+    type: NodePort
     port: 80
     targetPort: 80
     nodePort: 31000
@@ -41,7 +41,7 @@ frontend:
 
   service:
     name: react-service
-    type: LoadBalancer
+    type: NodePort
     port: 80
     targetPort: 80
     nodePort: 32000

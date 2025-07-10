@@ -94,7 +94,8 @@ pipeline {
                 echo "******* Deploying our helm chart on K8S *******"
                 script {
                     sh """
-                    minikube tunnel &
+                    kubectl port-forward --address=0.0.0.0 svc/react-service ${env.FRONTEND_PORT}:80
+                    kubectl port-forward --address=0.0.0.0 svc/flask-service ${env.BACKEND_PORT}:80
                     """
                 }       
             }
