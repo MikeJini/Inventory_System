@@ -48,6 +48,10 @@ frontend:
   
   config_map:
     name: react-config
+
+  ingress:
+    name: react-ingress
+    host: inventory.local 
   
 postgres:
   app: postgres
