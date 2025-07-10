@@ -1,5 +1,6 @@
 import requests
 import json
+import sys
 
 VALS = [
     {
@@ -31,7 +32,8 @@ VALS = [
     }
 ]
 
-get_url = r"http://127.0.0.1:5000/api/products"
+api_port = sys.argv[1] # Take in as parameter from pipeline
+get_url = fr"http://127.0.0.1:{api_port}/api/products"
 
 for item in VALS:
     response = requests.post(get_url, json=item)

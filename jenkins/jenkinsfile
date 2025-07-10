@@ -42,7 +42,7 @@ pipeline {
                     cd tests
                     docker compose up -d
                     sleep 30
-                    python insert_vals.py   
+                    python insert_vals.py 5000
                     docker compose down -v
                 """
                 }
@@ -86,6 +86,31 @@ pipeline {
                         """
                     }
                 }       
+            }
+        }
+
+        stage('Export Kubernetes') {
+            steps {
+                echo "******* Deploying our helm chart on K8S *******"
+                script {
+                    sh """
+                    kubectl port-forward --address=0.0.0.0 svc/react-service ${env.FRONTEND_PORT}:80
+                    kubectl port-forward --address=0.0.0.0 svc/flask-service ${env.BACKEND_PORT)}:80
+                    """
+                }       
+            }
+        }
+
+        stage('Test_Live') {
+            steps {
+                echo "****** Testing the app LIVE ******"
+                script {
+                    sh """
+                    cd tests
+                    sleep 30
+                    python insert_vals.py ${env.BACKEND_PORT}
+                """
+                }
             }
         }
     
