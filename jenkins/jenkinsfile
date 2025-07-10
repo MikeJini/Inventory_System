@@ -87,6 +87,8 @@ pipeline {
                         --set backend.host_port=${env.BACKEND_PORT} \
                         --set frontend.host_port=${env.FRONTEND_PORT}
 
+                        exit 0
+
                         jobs -p | xargs ps -o pid,cmd | grep kubectl | awk '{print $1}' | xargs kill
                         kubectl port-forward --address=0.0.0.0 svc/react-service ${env.FRONTEND_PORT}:80 &
                         kubectl port-forward --address=0.0.0.0 svc/flask-service ${env.BACKEND_PORT}:80 &
