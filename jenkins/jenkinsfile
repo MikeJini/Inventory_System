@@ -100,7 +100,7 @@ pipeline {
                 script {
                     sh """
                     cd tests
-                    sleep 30
+                    sleep 60
                     python insert_vals.py ${env.HOST_IP} ${env.BACKEND_PORT}
                 """
                 }
