@@ -10,7 +10,8 @@ from datetime import datetime
 Config.create_database()
 
 app = Flask(__name__)
-CORS(app,  resources={r"/api/*": {"origins": "*"}}, supports_credentials=True)
+# acces list domnain
+CORS(app,  resources={r"/api/*": {"origins": "*"}}, supports_credentials=True) 
 app.config.from_object(Config)
 db = SQLAlchemy(app)
 
@@ -101,11 +102,11 @@ def add_product():
 
     # Extract stock values if provided
     quantity = data.pop('quantity', 0)  # default to 0 if not provided
-    threshold = data.pop('threshold', 10)  # default threshold
+    threshold = data.pop('threshold', 10)  # default threshold for low stock
 
     try:
         # Create the product
-        product = Product(**data)
+        product = Product(**data)  # unpack dictionary 
         db.session.add(product)
         db.session.flush()  # get product_id before commit
 
@@ -127,7 +128,7 @@ def add_product():
         db.session.rollback()
         return jsonify({'error': str(e)}), 400
 
-# Get details of specific product
+# Get all products
 @app.route('/api/products', methods=['GET'])
 def get_products():
 
