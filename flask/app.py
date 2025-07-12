@@ -10,7 +10,7 @@ from datetime import datetime
 Config.create_database()
 
 app = Flask(__name__)
-CORS(app)
+CORS(app,  resources={r"/api/*": {"origins": "*"}}, supports_credentials=True)
 app.config.from_object(Config)
 db = SQLAlchemy(app)
 
