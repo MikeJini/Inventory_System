@@ -58,7 +58,7 @@ if get_response.status_code >= 200 and get_response.status_code <= 204:
     data = get_response.json()
 
     print(json.dumps(data, indent=2))
-    
+
     test_id_delete = data[0]["id"]
 else:
     raise Exception(f"GET request failed with status code: {get_response.status_code}")
@@ -67,9 +67,9 @@ print("\n" + "="*30 + "\n")
 
 # --- Delete Request Products ---
 
-print(f"Making a GET request to: {get_url}/1")
+print(f"Making a GET request to: {get_url}/{test_id_delete}")
 # Make the Delete request
-get_response = requests.delete(f"{get_url}/1")
+get_response = requests.delete(f"{get_url}/{test_id_delete}")
 
 # Check if the request was successful (status code 200)
 if get_response.status_code >= 200 and get_response.status_code <= 204:
