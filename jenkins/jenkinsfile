@@ -103,10 +103,9 @@ pipeline {
                     export KUBECONFIG=/home/devops/.kube/config
                     sleep 30
 
-                    nohup kubectl port-forward --address=0.0.0.0 svc/react-service ${env.FRONTEND_PORT}:80 > /tmp/react.log 2>&1 & 
-                    nohup kubectl port-forward --address=0.0.0.0 svc/flask-service ${env.BACKEND_PORT}:80 > /tmp/flask.log 2>&1 & 
-                    nohup kubectl port-forward --address 0.0.0.0 svc/inventory-chart-grafana 8010:80 /tmp/grafana.log 2>&1 &
-                    disown -h
+                    setsid kubectl port-forward --address=0.0.0.0 svc/react-service ${env.FRONTEND_PORT}:80 > /tmp/react.log 2>&1 < /dev/null & 
+                    setsid kubectl port-forward --address=0.0.0.0 svc/flask-service ${env.BACKEND_PORT}:80 > /tmp/flask.log 2>&1 < /dev/null & 
+                    setsid kubectl port-forward --address 0.0.0.0 svc/inventory-chart-grafana 8010:80 /tmp/grafana.log 2>&1 < /dev/null &
                     """
                     
                 }       
