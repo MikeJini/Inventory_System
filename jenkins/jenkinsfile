@@ -99,8 +99,7 @@ pipeline {
                 // and deletes them to prevent port overrides 
                 script {
                      
-                    sh """#!/bin/bash
-
+                    sh """
                     export KUBECONFIG=/home/devops/.kube/config
                     sleep 30
 
