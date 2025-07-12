@@ -44,9 +44,6 @@ for item in VALS:
     if response.status_code <= 200 and response.status_code >= 204:
         raise Exception(f"GET request failed with status code: {response.status_code}")
 
-    data = response.json()
-    test_id_delete = data[0]["id"]
-
 # --- GET Request Products ---
 
 print(f"Making a GET request to: {get_url}")
@@ -58,7 +55,11 @@ if get_response.status_code >= 200 and get_response.status_code <= 204:
     print("GET request successful!")
     # Print the JSON response content
     print("Response JSON:")
-    print(json.dumps(get_response.json(), indent=2))
+    data = get_response.json()
+
+    print(json.dumps(data, indent=2))
+    
+    test_id_delete = data[0]["id"]
 else:
     raise Exception(f"GET request failed with status code: {get_response.status_code}")
 
