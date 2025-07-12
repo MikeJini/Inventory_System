@@ -34,6 +34,7 @@ VALS = [
 
 api_port = sys.argv[1] # Take in as parameter from pipeline
 get_url = fr"http://127.0.0.1:{api_port}/api/products"
+test_id_delete = None
 
 for item in VALS:
     response = requests.post(get_url, json=item)
@@ -42,6 +43,9 @@ for item in VALS:
 
     if response.status_code <= 200 and response.status_code >= 204:
         raise Exception(f"GET request failed with status code: {response.status_code}")
+
+    data = response.json()
+    test_id_delete = data[0]["id"]
 
 # --- GET Request Products ---
 
