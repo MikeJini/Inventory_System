@@ -80,7 +80,7 @@ pipeline {
                         export HOST_IP=\$(minikube ip)
 
                         helm upgrade --install ${env.CHART_NAME} ./helmchart \
-                        --set host=\${HOST_IP} \
+                        --set host=\$HOST_IP \
                         --set backend.deployment.image_tag=${env.VERSION} \
                         --set frontend.deployment.image_tag=${env.VERSION} \
                         --set backend.secret.password=\${PG_PASSWORD} \
