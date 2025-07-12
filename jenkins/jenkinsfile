@@ -77,7 +77,7 @@ pipeline {
                         sh """#!/bin/bash
 
                         export KUBECONFIG=/home/devops/.kube/config
-                        export HOST_IP=$(minikube ip)
+                        export HOST_IP=\$(minikube ip)
 
                         helm upgrade --install ${env.CHART_NAME} ./helmchart \
                         --set host=\${HOST_IP} \
@@ -99,7 +99,7 @@ pipeline {
                 script {
                     sh """
                     cd tests
-                    export HOST_IP=$(minikube ip)
+                    export HOST_IP=\$(minikube ip)
                     sleep 30
                     python insert_vals.py $HOST_IP ${env.BACKEND_PORT}
                 """
