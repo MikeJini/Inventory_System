@@ -103,7 +103,7 @@ pipeline {
                     export KUBECONFIG=/home/devops/.kube/config
                     sleep 30
 
-                    echo "$(pwd)/tests/start-port-forward.sh" | at now
+                    echo "\$(pwd)/tests/start-port-forward.sh" | at now
                     """
                     
                 }       
