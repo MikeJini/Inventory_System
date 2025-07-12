@@ -9,6 +9,16 @@ function App() {
   const [lowStock, setLowStock] = useState([]);
   const [restocks, setRestocks] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [newProduct, setNewProduct] = useState({
+  name: '',
+  description: '',
+  sku: '',
+  category: '',
+  price: '',
+  quantity: '',
+  threshold: ''
+  });
+
 
   console.log(import.meta.env);
 
@@ -54,6 +64,85 @@ function App() {
   return (
     <div className="App">
       <h1>Inventory Dashboard</h1>
+
+      <section>
+        <h2>Add New Product</h2>
+        <form
+          onSubmit={async (e) => {
+            e.preventDefault();
+            try {
+              await axios.post(`http://${flaskUrl}:${flaskPort}/api/products`, {
+                ...newProduct,
+                price: parseFloat(newProduct.price),
+                quantity: parseInt(newProduct.quantity),
+                threshold: parseInt(newProduct.threshold)
+              });
+              setNewProduct({
+                name: '',
+                description: '',
+                sku: '',
+                category: '',
+                price: '',
+                quantity: '',
+                threshold: ''
+              });
+              fetchProducts();
+              fetchLowStock();
+              fetchRestocks();
+            } catch (err) {
+              alert('Failed to add product: ' + err.response?.data?.error || err.message);
+            }
+          }}
+        >
+          <input
+            type="text"
+            placeholder="Name"
+            value={newProduct.name}
+            onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })}
+            required
+          />
+          <input
+            type="text"
+            placeholder="Description"
+            value={newProduct.description}
+            onChange={(e) => setNewProduct({ ...newProduct, description: e.target.value })}
+          />
+          <input
+            type="text"
+            placeholder="SKU"
+            value={newProduct.sku}
+            onChange={(e) => setNewProduct({ ...newProduct, sku: e.target.value })}
+            required
+          />
+          <input
+            type="text"
+            placeholder="Category"
+            value={newProduct.category}
+            onChange={(e) => setNewProduct({ ...newProduct, category: e.target.value })}
+          />
+          <input
+            type="number"
+            placeholder="Price"
+            value={newProduct.price}
+            onChange={(e) => setNewProduct({ ...newProduct, price: e.target.value })}
+            required
+          />
+          <input
+            type="number"
+            placeholder="Initial Quantity"
+            value={newProduct.quantity}
+            onChange={(e) => setNewProduct({ ...newProduct, quantity: e.target.value })}
+          />
+          <input
+            type="number"
+            placeholder="Threshold"
+            value={newProduct.threshold}
+            onChange={(e) => setNewProduct({ ...newProduct, threshold: e.target.value })}
+          />
+          <button type="submit">Add Product</button>
+        </form>
+      </section>
+
 
       <section>
         <h2>All Products</h2>
