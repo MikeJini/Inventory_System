@@ -5,4 +5,4 @@ metadata:
 data:
   # property-like keys; each key maps to a simple value
   VITE_FLASK_URL: "{{ .Values.host }}"
-  VITE_FLASK_PORT: "{{ .Values.backend.host_port }}"
+  VITE_FLASK_PORT: "{{ .Values.backend.host.nodePort }}"

@@ -14,8 +14,8 @@ pipeline {
 
         DOCKERHUB_CRED = "docker-credentials"
         CHART_NAME = "inventory-chart"
-        FRONTEND_PORT = 8000
-        BACKEND_PORT = 8001
+        FRONTEND_PORT = 31000
+        BACKEND_PORT = 32000
     }
 
     stages {
@@ -42,7 +42,7 @@ pipeline {
                     cd tests
                     docker compose up -d
                     sleep 30
-                    python insert_vals.py 5000
+                    python insert_vals.py 127.0.0.1 5000
                     docker compose down -v
                 """
                 }
@@ -77,35 +77,18 @@ pipeline {
                         sh """#!/bin/bash
 
                         export KUBECONFIG=/home/devops/.kube/config
+                        export HOST_IP=$(minikube ip)
 
                         helm upgrade --install ${env.CHART_NAME} ./helmchart \
+                        --set host=\${HOST_IP} \
                         --set backend.deployment.image_tag=${env.VERSION} \
                         --set frontend.deployment.image_tag=${env.VERSION} \
                         --set backend.secret.password=\${PG_PASSWORD} \
                         --set postgres.secret.password=\${PG_PASSWORD} \
-                        --set backend.host_port=${env.BACKEND_PORT} \
-                        --set frontend.host_port=${env.FRONTEND_PORT}
+                        --set backend.host.nodePort=${env.BACKEND_PORT} \
+                        --set frontend.host.nodePort=${env.FRONTEND_PORT}
                         """
                     }
-                }       
-            }
-        }
-
-        stage('Export Kubernetes') {
-            steps {
-                echo "******* Port Exporting our services *******"
-
-                // Note: The command chain of jobs takes all the background jobs containing kubectl
-                // and deletes them to prevent port overrides 
-                script {
-                     
-                    sh """
-                    export KUBECONFIG=/home/devops/.kube/config
-                    sleep 30
-
-                    echo "\$(pwd)/tests/start-port-forward.sh" | at now
-                    """
-                    
                 }       
             }
         }
@@ -116,8 +99,9 @@ pipeline {
                 script {
                     sh """
                     cd tests
+                    export HOST_IP=$(minikube ip)
                     sleep 30
-                    python insert_vals.py ${env.BACKEND_PORT}
+                    python insert_vals.py $HOST_IP ${env.BACKEND_PORT}
                 """
                 }
             }

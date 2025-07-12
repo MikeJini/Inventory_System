@@ -32,8 +32,9 @@ VALS = [
     }
 ]
 
-api_port = sys.argv[1] # Take in as parameter from pipeline
-get_url = fr"http://127.0.0.1:{api_port}/api/products"
+api_host = sys.argv[1]
+api_port = sys.argv[2] # Take in as parameter from pipeline
+get_url = fr"http://{api_host}:{api_port}/api/products"
 test_id_delete = None
 
 for item in VALS:
