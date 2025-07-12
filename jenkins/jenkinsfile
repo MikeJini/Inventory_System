@@ -14,8 +14,8 @@ pipeline {
 
         DOCKERHUB_CRED = "docker-credentials"
         CHART_NAME = "inventory-chart"
-        FRONTEND_PORT = 31000
-        BACKEND_PORT = 32000
+        FRONTEND_PORT = 32000
+        BACKEND_PORT = 31000
         HOST_IP = "192.168.49.2"
     }
 
