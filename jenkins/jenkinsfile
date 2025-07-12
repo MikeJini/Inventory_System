@@ -16,6 +16,7 @@ pipeline {
         CHART_NAME = "inventory-chart"
         FRONTEND_PORT = 31000
         BACKEND_PORT = 32000
+        HOST_IP = "192.168.49.2"
     }
 
     stages {
@@ -80,7 +81,7 @@ pipeline {
                         export HOST_IP=192.168.49.2
 
                         helm upgrade --install ${env.CHART_NAME} ./helmchart \
-                        --set host=\$HOST_IP \
+                        --set host=${env.HOST_IP} \
                         --set backend.deployment.image_tag=${env.VERSION} \
                         --set frontend.deployment.image_tag=${env.VERSION} \
                         --set backend.secret.password=\${PG_PASSWORD} \
@@ -99,9 +100,8 @@ pipeline {
                 script {
                     sh """
                     cd tests
-                    export HOST_IP=\$(minikube ip)
                     sleep 30
-                    python insert_vals.py $HOST_IP ${env.BACKEND_PORT}
+                    python insert_vals.py ${env.HOST_IP} ${env.BACKEND_PORT}
                 """
                 }
             }
