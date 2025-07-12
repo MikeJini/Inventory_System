@@ -86,8 +86,8 @@ pipeline {
                         --set frontend.deployment.image_tag=${env.VERSION} \
                         --set backend.secret.password=\${PG_PASSWORD} \
                         --set postgres.secret.password=\${PG_PASSWORD} \
-                        --set backend.host.nodePort=${env.BACKEND_PORT} \
-                        --set frontend.host.nodePort=${env.FRONTEND_PORT}
+                        --set backend.service.nodePort=${env.BACKEND_PORT} \
+                        --set frontend.service.nodePort=${env.FRONTEND_PORT}
                         """
                     }
                 }       
