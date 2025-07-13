@@ -37,7 +37,7 @@ frontend:
     image_name: mikejini/inventory_frontend
     image_tag: 
     container_port: 80
-    replicas: 1
+    replicas: 2
 
   service:
     name: react-service
