@@ -3,6 +3,7 @@ from sqlalchemy import event
 from datetime import datetime
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.exc import IntegrityError
 from flask_cors import CORS
 from config import Config
 from datetime import datetime
@@ -123,6 +124,10 @@ def add_product():
             'message': 'Product and stock level added',
             'product_id': product.product_id
         }), 201
+
+    except IntegrityError as e:
+        db.session.rollback()
+        return jsonify({'error': 'Product already exists or violates a unique constraint.'}), 409
 
     except Exception as e:
         db.session.rollback()

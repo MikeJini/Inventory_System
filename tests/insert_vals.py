@@ -42,8 +42,11 @@ for item in VALS:
 
     print(type(response.status_code))
 
+    if response.status_code == 409:
+        continue
+
     # If request failed
-    if response.status_code < 200 or response.status_code > 204:
+    elif response.status_code < 200 or response.status_code > 204:
         raise Exception(f"GET request failed with status code: {response.status_code}")
 
 # --- GET Request Products ---
